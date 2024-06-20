@@ -1,4 +1,5 @@
 .home-body{
+  /* height: 100vh; */
     background: linear-gradient(0deg, rgba(233,173,43,1) 0%, rgba(136,183,108,1) 61%, rgba(39,83,44,1) 100%);
     top: 0;
     left: 0;
