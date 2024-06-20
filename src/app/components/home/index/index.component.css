@@ -179,17 +179,5 @@
     }
 
 }
-.footer{
-    width: 100%;
-    height: 10vh;
-    background-image: linear-gradient(45deg, rgb(22, 22, 22),rgb(121, 121, 121)),linear-gradient(45deg, rgb(86, 33, 11) 0%, rgb(86, 33, 11) 19%,rgb(105, 58, 15) 19%, rgb(105, 58, 15) 64%,rgb(125, 83, 19) 64%, rgb(125, 83, 19) 68%,rgb(144, 109, 22) 68%, rgb(144, 109, 22) 81%,rgb(164, 134, 26) 81%, rgb(164, 134, 26) 87%,rgb(183, 159, 30) 87%, rgb(183, 159, 30) 100%),linear-gradient(135deg, rgb(86, 33, 11) 0%, rgb(86, 33, 11) 19%,rgb(105, 58, 15) 19%, rgb(105, 58, 15) 64%,rgb(125, 83, 19) 64%, rgb(125, 83, 19) 68%,rgb(144, 109, 22) 68%, rgb(144, 109, 22) 81%,rgb(164, 134, 26) 81%, rgb(164, 134, 26) 87%,rgb(183, 159, 30) 87%, rgb(183, 159, 30) 100%); background-blend-mode:overlay,overlay,normal;
-}
 
-.footer-dev{
-    line-height: 2px; 
-    display: flex;
-    flex-direction: row; 
-    align-items: center;
-    font-size: clamp(0.2rem, 2vw, 1rem);
-}
 /* Media queries para responsividad */

@@ -201,6 +201,48 @@ td, th {
   justify-content: center;
   gap: 5px;
 }
+.footer {
+  background-image: linear-gradient(45deg, rgb(22, 22, 22),rgb(75,73,73)),linear-gradient(45deg, rgb(86, 33, 11) 0%, rgb(86, 33, 11) 19%,rgb(105, 58, 15) 19%, rgb(105, 58, 15) 64%,rgb(125, 83, 19) 64%, rgb(125, 83, 19) 68%,rgb(144, 109, 22) 68%, rgb(144, 109, 22) 81%,rgb(164, 134, 26) 81%, rgb(164, 134, 26) 87%,rgb(183, 159, 30) 87%, rgb(183, 159, 30) 100%),linear-gradient(135deg, rgb(86, 33, 11) 0%, rgb(86, 33, 11) 19%,rgb(105, 58, 15) 19%, rgb(105, 58, 15) 64%,rgb(125, 83, 19) 64%, rgb(125, 83, 19) 68%,rgb(144, 109, 22) 68%, rgb(144, 109, 22) 81%,rgb(164, 134, 26) 81%, rgb(164, 134, 26) 87%,rgb(183, 159, 30) 87%, rgb(183, 159, 30) 100%); background-blend-mode:overlay,overlay,normal; /* Color de fondo del footer */
+  color: aliceblue; /* Color del texto */
+  padding: 20px 0; /* Espacio interno alrededor del contenido */
+  text-align: center; /* Alineación del texto */
+}
+
+.footer-content {
+  max-width: 1200px; /* Ancho máximo del contenido del footer */
+  margin: 0 auto; /* Centrar el contenido horizontalmente */
+  display: flex; /* Contenedor flexible */
+  flex-wrap: wrap; /* Permitir envolver los elementos en filas */
+  justify-content: space-between; /* Distribución del espacio entre elementos */
+  align-items: center; /* Alinear elementos verticalmente */
+}
+
+.footer-left, .footer-right {
+  flex: 1; /* Los dos lados ocupan igual espacio */
+}
+
+.footer-right {
+  text-align: right; /* Alinear el texto a la derecha */
+}
+
+.developer-list {
+  display: flex; /* Mostrar en línea los elementos de la lista */
+}
+
+.developer-list p {
+  margin: 0 5px; /* Espacio entre los nombres de los desarrolladores */
+}
+
+@media screen and (max-width: 600px) {
+  .footer-content {
+    flex-direction: column; /* Cambiar a diseño de columna en pantallas pequeñas */
+    text-align: center; /* Alinear texto al centro en diseño de columna */
+  }
+
+  .footer-left, .footer-right {
+    text-align: center; /* Alinear ambos lados al centro en diseño de columna */
+  }
+}
 
 @media (min-width: 991px) {
     .nav-link::before {
