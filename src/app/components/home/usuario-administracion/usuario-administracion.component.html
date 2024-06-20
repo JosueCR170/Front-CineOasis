@@ -1,3 +1,6 @@
+@if(!authTokenUserAdmin()){
+  {{redirectToHome()}}
+}@else{
 <div class="tablaUsuario-body">
   <div class="usuario-container">
     <div class="contenedor-tablas">
@@ -231,3 +234,4 @@
     </div>
   </div>
 </div>
+}

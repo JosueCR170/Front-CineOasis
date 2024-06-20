@@ -21,7 +21,8 @@ import { Funcion } from '../../../models/Funcion';
 import { Asiento } from '../../../models/Asiento';
 import { ComidaService } from '../../../services/comida.service';
 import { AsientoService } from '../../../services/asiento.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pago',
@@ -57,7 +58,6 @@ export class PagoComponent implements OnInit {
   public idFuncion:any;
   public funcion: Funcion;
   public pelicula:Pelicula;
-  router: any;
   constructor(
     private _serviceCompartido: AsientoCompartidoService,
     private _funcionAsientos: FuncionAsientoService,
@@ -68,7 +68,8 @@ export class PagoComponent implements OnInit {
    private _pelicula:PeliculaService,
    private _funcion:FuncionService,
    private _comidaService:ComidaService,
-   private _asientoService:AsientoService
+   private _asientoService:AsientoService,
+   private _router: Router,
   ){
     this.comida = new Comida(1,"",1,"")
     this.pelicula = new Pelicula(1,"","","","","","","","","","","")
@@ -89,6 +90,17 @@ ngOnInit(): void {
   this.ObtenerDatosCombos();
   this.ObtenerPrecioTotal();
   
+}
+
+//---------------RESTRINGIR ACCESO A MODULOS------------------------------------
+authTokenUser(){
+  let aux = sessionStorage.getItem('identity');
+ return aux===null ? false:true;
+}
+
+redirectToHome(){
+  this._router.navigate(['']);
+  this.msgAlert('Necesitas estar registrado para acceder a este módulo','','error');
 }
 
 
@@ -301,4 +313,13 @@ ngOnInit(): void {
     this.dia = ('0' + date.getDate()).slice(-2);
     return `${this.ano}-${this.mes}-${this.dia}`;
   }
+
+  //--------------------------FUNCIONES DE ALERTAS-------------------------------------------------------------------
+msgAlert= (title:any, text:any, icon:any) =>{
+  Swal.fire({
+    title,
+    text,
+    icon,
+  })
+}
 }

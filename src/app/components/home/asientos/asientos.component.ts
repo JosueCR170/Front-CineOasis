@@ -52,6 +52,16 @@ export class AsientosComponent {
     this.loadIdentuty()
   }
 
+  authTokenUser(){
+    let aux = sessionStorage.getItem('identity');
+   return aux===null ? false:true;
+  }
+
+  redirectToHome(){
+    this._router.navigate(['']);
+    this.msgAlert('Necesitas estar registrado para acceder a este módulo','','error');
+  }
+
   getAsientos(){
     this._asientoService.index().subscribe({
       next:(response:any) =>{
@@ -121,11 +131,7 @@ export class AsientosComponent {
     if (this.identity == null) {
     } else {
       if (this.selectedAsientos.length === 0) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Debe seleccionar al menos un asiento',
-          text: 'Por favor, seleccione un asiento antes de continuar.',
-        });
+        this.msgAlert('Debe seleccionar al menos un asiento','Por favor, seleccione un asiento antes de continuar.','warning' );
       } else {
         this.enviarFuncionAsientos();
         if (this.funcionesAsientosAux.length == 0) {
@@ -157,4 +163,14 @@ export class AsientosComponent {
       }
     })
   }
+
+  
+    //--------------------------FUNCIONES DE ALERTAS-------------------------------------------------------------------
+ msgAlert= (title:any, text:any, icon:any) =>{
+  Swal.fire({
+    title,
+    text,
+    icon,
+  })
+}
 }

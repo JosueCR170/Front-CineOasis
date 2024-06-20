@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Funcion } from '../../../models/Funcion';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
@@ -42,11 +42,27 @@ export class FuncionAdministracionComponent {
   constructor(
     private _funcionService: FuncionService,
     private _peliculaService: PeliculaService,
-    private _asientoService:AsientoService
+    private _asientoService:AsientoService,
+    private _router:Router,
   ) {
     this._funcion = new Funcion(1,0,"","","","",3500)
     this._pelicula = new Pelicula(1,"","","","","","","","","","","")
     //this.urlAPI = server.url+'imagen/show/comidas/';
+  }
+
+  //---------------RESTRINGIR ACCESO A MODULOS------------------------------------
+  authTokenUserAdmin(){
+    let aux = sessionStorage.getItem('identity');
+    if (aux == null){
+      return false;
+    } else {
+    let jason= JSON.parse(aux);
+    return jason.permisoAdmin;
+    }
+  }
+
+  redirectToHome(){
+    this._router.navigate([''])
   }
 
   applyFilter(event: Event): void {

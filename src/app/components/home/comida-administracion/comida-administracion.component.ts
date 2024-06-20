@@ -4,7 +4,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ComidaService } from '../../../services/comida.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
@@ -43,10 +43,26 @@ export class ComidaAdministracionComponent {
   public activateErrors:boolean=false;
   constructor(
     private _comidaService: ComidaService,
-    private _imagenService: ImagenService
+    private _imagenService: ImagenService,
+    private _router:Router
   ) {
     this._comida = new Comida(1,"",0,"")
     this.urlAPI = server.url+'imagen/show/comidas/';
+  }
+
+   //---------------RESTRINGIR ACCESO A MODULOS------------------------------------
+   authTokenUserAdmin(){
+    let aux = sessionStorage.getItem('identity');
+    if (aux == null){
+      return false;
+    } else {
+    let jason= JSON.parse(aux);
+    return jason.permisoAdmin;
+    }
+  }
+
+  redirectToHome(){
+    this._router.navigate([''])
   }
 
   applyFilter(event: Event): void {

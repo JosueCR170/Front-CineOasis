@@ -12,7 +12,6 @@ import { ImgPeliculaAdministracionComponent } from './components/home/img-pelicu
 import { OfertaComboComponent } from './components/home/oferta-combo/oferta-combo.component';
 import { PagoComponent } from './components/home/pago/pago.component';
 import { FuncionAdministracionComponent } from './components/home/funcion-administracion/funcion-administracion.component';
-import { FuncionAsientoAdministracionComponent } from './components/home/funcion-asiento-administracion/funcion-asiento-administracion.component';
 
 
 export const routes: Routes = [
@@ -28,7 +27,6 @@ export const routes: Routes = [
         {path:'ofertaCombo',component:OfertaComboComponent},
         {path:'pago',component:PagoComponent},
         {path:'funcionAdministracion', component:FuncionAdministracionComponent},
-        {path:'funcionAsientoAdministracion', component:FuncionAsientoAdministracionComponent},
         {path:'asientos/:id',component:AsientosComponent}]
     }
 ];

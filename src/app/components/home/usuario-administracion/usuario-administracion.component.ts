@@ -3,7 +3,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SelectionModel } from '@angular/cdk/collections';
 import { User } from '../../../models/User';
@@ -38,8 +38,24 @@ export class UsuarioAdministracionComponent {
   constructor(
     private _userService: UserService,
     private _imagenService:ImagenService,
+    private _router:Router
   ) {
     this._user= new User(1,"","","","","",false,"")
+  }
+
+  //---------------RESTRINGIR ACCESO A MODULOS------------------------------------
+  authTokenUserAdmin(){
+    let aux = sessionStorage.getItem('identity');
+    if (aux == null){
+      return false;
+    } else {
+    let jason= JSON.parse(aux);
+    return jason.permisoAdmin;
+    }
+  }
+
+  redirectToHome(){
+    this._router.navigate([''])
   }
 
 

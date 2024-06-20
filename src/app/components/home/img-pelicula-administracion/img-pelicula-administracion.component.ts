@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
@@ -44,10 +44,26 @@ public activateErrors:boolean=false;
 public imageURL:string;
   constructor(
     private _imagenService: ImagenService,
-    private _peliculaService:PeliculaService
+    private _peliculaService:PeliculaService,
+    private _router:Router,
   ) {
     this._imagenPelicula = new Imagen(1,1,"",""),
     this.imageURL=server.url+'imagen/pelicula/'
+  }
+
+   //---------------RESTRINGIR ACCESO A MODULOS------------------------------------
+   authTokenUserAdmin(){
+    let aux = sessionStorage.getItem('identity');
+    if (aux == null){
+      return false;
+    } else {
+    let jason= JSON.parse(aux);
+    return jason.permisoAdmin;
+    }
+  }
+
+  redirectToHome(){
+    this._router.navigate([''])
   }
 
   applyFilter(event: Event): void {

@@ -1,3 +1,6 @@
+@if(!authTokenUserAdmin()){
+  {{redirectToHome()}}
+}@else{
 <div class="tablaComida-body">
     <div class="comida-container">
       <div class="contenedor-tablas">
@@ -158,3 +161,4 @@
     </div>
   </div>
   
+}

@@ -47,8 +47,10 @@ export class HomeComponent {
       this.user=new User(1,"","","","","",false,null);
 
       this.checkIdentity=setInterval(()=>{
-        this.identity=_userService.getIdentityFromStorage()
-      },1700)
+        //this.identity=_userService.getIdentityFromStorage()
+        // console.log('nuevo token',this.identity)
+        this.verificarToken()
+      },5000)
     }
   ngOnInit(): void {
     initFlowbite();
@@ -59,7 +61,28 @@ export class HomeComponent {
     } else {
       this.imageURL = "../../../assets/img/R.jpg";
     }
-    
+  }
+
+  //---------VERIFICAR TOKEN-----------------
+  verificarToken() {
+    this._userService.verifyToken().subscribe({
+      next: (response: any) => {
+        console.log('response',response);
+        if (!response) {
+          sessionStorage.clear();
+          console.log("Sesión borrada");
+          this._router.navigate(['']);
+          location.reload();
+          this.msgAlert('Token caducado','Inicia sesión nuevamente','error');
+        } else {
+         this.identity = this._userService.getIdentityFromStorage();
+          console.log(this.identity);
+        }
+      },
+      error: (err: Error) => {
+        console.log('error del response',err);
+      }
+    });
   }
   
   //Obtener imagen de usuario

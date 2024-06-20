@@ -35,6 +35,7 @@ constructor(
   private _imagenService: ImagenService,
   private _funcionService:FuncionService,
   private _routes: ActivatedRoute,
+  private _router:Router,
 ){
   this.urlAPI = server.url+'imagen/pelicula/';
   this.pelicula = new Pelicula(1,"","","","","","","","","","","")
@@ -47,6 +48,21 @@ ngOnInit():void{
     this.getPelicula(id);
     this.getFuncionesPelicula(id);
   }
+}
+
+ //---------------RESTRINGIR ACCESO A MODULOS------------------------------------
+ authTokenUserAdmin(){
+  let aux = sessionStorage.getItem('identity');
+  if (aux == null){
+    return false;
+  } else {
+  let jason= JSON.parse(aux);
+  return jason.permisoAdmin;
+  }
+}
+
+redirectToHome(){
+  this._router.navigate([''])
 }
 
 getPelicula(id:string){

@@ -3,7 +3,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -62,10 +62,26 @@ public selectedPelicula: Pelicula = new Pelicula(1,'','','','','','','','','',''
   constructor(
     private _peliculaService: PeliculaService,
     private _imagenService:ImagenService,
+    private _router:Router,
   ) {
     this._pelicula= new Pelicula(1,'','','','','','','','','','','');
   }
 
+
+  //---------------RESTRINGIR ACCESO A MODULOS------------------------------------
+  authTokenUserAdmin(){
+    let aux = sessionStorage.getItem('identity');
+    if (aux == null){
+      return false;
+    } else {
+    let jason= JSON.parse(aux);
+    return jason.permisoAdmin;
+    }
+  }
+
+  redirectToHome(){
+    this._router.navigate([''])
+  }
 
   //-------------FUNCION QUE LIMPIA FORM----------------
   resetForm(form:any){form.reset();}

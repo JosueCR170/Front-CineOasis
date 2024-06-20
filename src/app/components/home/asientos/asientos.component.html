@@ -1,3 +1,6 @@
+@if(!authTokenUser()){
+    {{redirectToHome()}}
+  }@else{
 <div class="asientos-body">
    <div class="contenido-asientos">
       <div class="cuerpo2">
@@ -37,3 +40,4 @@
       </div>
    </div>
 </div>
+  }
